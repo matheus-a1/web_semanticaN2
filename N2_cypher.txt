@@ -1,0 +1,41 @@
+// criar fabricante
+create (:Fabricante{nome:"Ford"})
+create (:Fabricante{nome:"Volkswagen"})
+create (:Fabricante{nome:"GM"})
+create (:Fabricante{nome:"Fiat"})
+
+// crair Concessionaria
+create (:Concessionaria{nome:"Saga"})
+create (:Concessionaria{nome:"Navesa"})
+create (:Concessionaria{nome:"TudoGM"})
+create (:Concessionaria{nome:"Pinalto"})
+
+//criar carros Fusca relacionando com fabricante e Concessionaria
+match (fab:Fabricante), (conc:Concessionaria)
+where fab.nome = "Volkswagen" and 
+    conc.nome = "Saga"
+create(fusca:Carro {
+    nome: "Fusca"})
+create
+(fab)-[:Fabrica]->(fusca),
+(conc)-[:Vende]->(fusca)  
+
+//criar carros mustang relacionando com fabricante e Concessionaria
+match (fab:Fabricante), (conc:Concessionaria)
+where fab.nome = "Ford" and 
+    conc.nome = "Navesa"
+create(mustang:Carro {
+    nome: "Mustang"})
+create
+(fab)-[:Fabrica]->(mustang),
+(conc)-[:Vende]->(mustang)  
+
+//criar carros camaro relacionando com fabricante e Concessionaria
+match (fab:Fabricante), (conc:Concessionaria)
+where fab.nome = "GM" and 
+    conc.nome = "TudoGM"
+create(camaro:Carro {
+    nome: "Camaro"})
+create
+(fab)-[:Fabrica]->(camaro),
+(conc)-[:Vende]->(camaro) 
